@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 class HelloController {
 
-    @GetMapping("/hello")
-    @ResponseBody
-    public String hello() {
-        return "<h2>Hello from Spring!</h2>";
-    }
+//    @GetMapping("/hello")
+//    @ResponseBody
+//    public String hello() {
+//        return "<h2>Hello from Spring!</h2>";
+//    }
 
 //    @PostMapping("/hello")
 //    @ResponseBody
