@@ -1,44 +1,14 @@
 package com.codeup.springblog.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-class HelloController {
-
-//    @GetMapping("/hello")
-//    @ResponseBody
-//    public String hello() {
-//        return "<h2>Hello from Spring!</h2>";
-//    }
-
-//    @PostMapping("/hello")
-//    @ResponseBody
-//    public String goodbye() {
-//        return
-//    }
-
-//    @GetMapping("/hello/{name}")
-//    @ResponseBody
-//    public String goodbye(@PathVariable String name) {
-//        return "well hello" + " " + name + "!";
-//    }
-
-    @GetMapping("/goodbye")
+public class HelloController {
+    @GetMapping("/hello")
     @ResponseBody
-    public String goodbyeGoodbye() {
-        return "You waved goodbye";
+    public String hello() {
+        return "Hello from Spring!";
     }
-
-
-    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
-    @ResponseBody
-    public String addOne(@PathVariable int number) {
-        return number + " plus one is " + (number + 1) + "!";
-    }
-
-
-
-
-
 }
