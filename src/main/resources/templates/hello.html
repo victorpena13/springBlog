@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>hello</title>
+</head>
+<body>
+<nav th:replace="fragments/partials :: navbar"></nav>
+
+<h1>Hello, <span th:text="${name}">World</span>!!</h1>
+
+<div th:each="color : ${colors}">
+    <li th:text="${color}"></li>
+</div>
+
+<div th:replace="fragments/footer :: my-footer"></div>
+</body>
+</html>
