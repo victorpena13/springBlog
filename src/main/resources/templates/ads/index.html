@@ -5,10 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Posts</h1>
 <div class="card" th:each="ad : ${ads}">
     <h1 th:text="${ad.title}"/>
     <p th:text="${ad.description}"/>
     <input type="hidden" name="id" th:value="${ad.id}"/>
+
 </div>
 
 </body>

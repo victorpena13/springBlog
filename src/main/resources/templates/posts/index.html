@@ -5,10 +5,14 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Posts</h1>
 <div class="card" th:each="post : ${posts}">
     <h1 th:text="${post.title}"/>
     <p th:text="${post.description}"/>
     <input type="hidden" name="id" th:value="${post.id}"/>
+    <a th:href="@{/posts/delete/${post.id}}">
+        <button class="btn btn-danger">Delete</button>
+    </a>
 </div>
 
 </body>
