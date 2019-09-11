@@ -7,10 +7,9 @@
 <body>
 <h1>Posts</h1>
 <div class="card" th:each="ad : ${ads}">
-    <h1 th:text="${ad.title}"/>
-    <p th:text="${ad.description}"/>
+    <h1 th:text="${ad.title}"></h1>
+    <p th:text="${ad.description}"></p>
     <input type="hidden" name="id" th:value="${ad.id}"/>
-
 </div>
 
 </body>

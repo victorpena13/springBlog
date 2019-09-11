@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+    <form th:action="@{/posts/edit/__${post.id}__}" th:method="POST">
+
+    <input th:text="${title}" name="title" th:value="${post.title}"/>
+    <input th:text="${description}" name="description" th:value="${post.description}"/>
+    <button>Edit</button>
+</form>
+
+</body>
+</html>

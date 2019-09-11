@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments/header :: main-header('Ads')"/>
 
 </head>
 <body>
 
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<h1 th:text="${post.title}"/>
-<p th:text="${post.description}"/>
+<h1 th:text="${post.title}"></h1>
+<p th:text="${post.description}"></p>
+<h1>Created by:</h1><p th:text="${post.owner.email}"></p>
+
 
 
 <div th:replace="fragments/footer :: my-footer"></div>

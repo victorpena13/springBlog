@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+<h1>Create A Post</h1>
+
+<form th:action="@{/posts/create}" th:method="POST" th:object="${post}">
+    <h1>Title: </h1><input th:field="*{title}"/>
+    <h1>Description: </h1><input th:field="*{description}"/>
+    <button>Create</button>
+</form>
+
+</body>
+</html>
+
+<!--//@ are for urls-->
+<!--//$ for objects-->
+<!--//* for parameters-->
