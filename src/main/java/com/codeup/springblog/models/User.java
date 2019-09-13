@@ -7,7 +7,9 @@ import javax.persistence.*;
 public class User {
     @Id @GeneratedValue
     private long id;
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, unique = true)
+    private String username;
+    @Column(nullable = false, length = 100, unique = true)
     private String email;
     @Column(nullable = false)
     private String password;
@@ -16,15 +18,32 @@ public class User {
 
     }
 
-    public User(String email, String password) {
+    public User(User copy) {
+        id = copy.id;
+        username = copy.username;
+        email = copy.email;
+        password = copy.password;
+    }
+
+    public User(String email, String user, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public User(long id, String email, String password) {
+    public User(long id, String username, String email, String password) {
         this.id = id;
+        this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public long getId() {

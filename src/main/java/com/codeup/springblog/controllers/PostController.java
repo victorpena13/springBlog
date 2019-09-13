@@ -4,6 +4,9 @@ import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repos.PostRepository;
 import com.codeup.springblog.repos.UserRepository;
+import com.codeup.springblog.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +25,9 @@ public class PostController {
         userDao=userRepository;
 
     }
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping("/posts")
     public String postsIndex(Model vModel) {
@@ -88,9 +94,15 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        User user = userDao.findOne(1l);
+        User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findOne(userSession.getId());
         post.setOwner(user);
         Post savedPost = postDao.save(post);
+        emailService.prepareAndSend(
+                savedPost,
+                "post created",
+                "Your post has been created!" + savedPost.getTitle() + savedPost.getOwner()
+        );
         return "redirect:/posts";
     }
 
