@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-
-</head>
+<head th:replace ="fragments/header :: main-header('home')"/>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<h1>The BucketList</h1>
+<h1 id="main-title">The BucketList</h1>
 <th:block>
     <div class="card" th:each="post : ${posts}">
         <h1 th:text="${post.title}"></h1>
         <p th:text="${post.description}"></p>
         <input type="hidden" name="id" th:value="${post.id}"/>
-        <form th:action="@{/posts/delete/__${post.id}__}" th:method="get" th:object="${post}">
-            <button class="btn btn-danger">Delete</button>
-        </form>
-        <form th:action="@{/posts/edit/__${post.id}__}" th:method="get" th:object="${post}">
-            <button class="btn btn-danger">Edit</button>
-        </form>
+        <a class="card-footer-item" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
     </div>
 </th:block>
 

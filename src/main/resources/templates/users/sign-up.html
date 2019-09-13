@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace ="fragments/header :: main-header('home')"/>
 
-</head>
 <body>
+<th:block th:replace="fragments/navbar :: top-nav" />
+
+
     <h1>Create An Account</h1>
     <form th:action="@{/sign-up}" method="post" th:object="${user}">
 

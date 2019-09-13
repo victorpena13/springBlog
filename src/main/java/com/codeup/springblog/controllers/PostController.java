@@ -43,8 +43,7 @@ public class PostController {
 //show individual post by Id
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model viewModel) {
-        Post post = postDao.findOne(id);
-        viewModel.addAttribute("post", post);
+        viewModel.addAttribute("post", postDao.findOne(id));
         return "posts/show";
     }
 
