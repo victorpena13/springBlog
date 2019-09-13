@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private UserRepository users;
+    private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
-        this.users = users;
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+        this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -30,7 +30,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        saveUser(user);
+        userDao.save(user);
         return "redirect:/login";
     }
 

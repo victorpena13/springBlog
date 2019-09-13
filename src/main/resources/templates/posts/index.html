@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
 </head>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
 
-<h1>Posts</h1>
+<h1>The BucketList</h1>
 <th:block>
     <div class="card" th:each="post : ${posts}">
         <h1 th:text="${post.title}"></h1>
@@ -18,7 +18,6 @@
         <form th:action="@{/posts/edit/__${post.id}__}" th:method="get" th:object="${post}">
             <button class="btn btn-danger">Edit</button>
         </form>
-
     </div>
 </th:block>
 

@@ -78,6 +78,7 @@ public class PostController {
 
     }
 
+
 //Delete working
     @GetMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable Long id) {
