@@ -1,6 +1,7 @@
 package com.codeup.springblog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table (name = "posts")
@@ -13,15 +14,17 @@ public class Post {
     private String description;
     @OneToOne
     private User owner;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Image> images;
     public Post() {
 
     }
 
-    public Post(String title, String description, User owner) {
+    public Post(String title, String description, User owner, List<Image> images) {
         this.title = title;
         this.description = description;
-        this.owner=owner;
+        this.owner = owner;
+        this.images = images;
     }
 
     public long getId() {
@@ -54,6 +57,14 @@ public class Post {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }
 

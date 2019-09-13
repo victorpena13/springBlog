@@ -5,15 +5,21 @@
 <th:block th:replace="fragments/navbar :: top-nav" />
 
 <h1 id="main-title">The BucketList</h1>
-<th:block>
+
+<div class="container">
+<div class="card-deck">
     <div class="card" th:each="post : ${posts}">
-        <h1 th:text="${post.title}"></h1>
-        <p th:text="${post.description}"></p>
-        <input type="hidden" name="id" th:value="${post.id}"/>
-        <a class="card-footer-item" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+        <img id="img" th:each="image : ${post.images}" th:src="${image.path}" class="card-img-top"/>
+        <!--        <img id="img" th:each="image : ${post.images} th:src="${image.path}" class="card-img-top" alt="">-->
+        <div class="card-body">
+            <h5 class="card-title" th:text="${post.title}"></h5>
+            <p class="card-text"><small class="text-muted" th:text="${post.description}"></small></p>
+            <a class="card-footer-item" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+        </div>
     </div>
-</th:block>
+</div>
+</div>
 
-
+<th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>
