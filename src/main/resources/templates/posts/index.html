@@ -3,23 +3,20 @@
 <head th:replace ="fragments/header :: main-header('home')"/>
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
-
 <h1 id="main-title">The BucketList</h1>
 
 <div class="container">
-<div class="card-deck">
-    <div class="card" th:each="post : ${posts}">
+    <div class="row">
+    <div class="card col-4" style="width: 18rem;" th:each="post : ${posts}">
         <img id="img" th:each="image : ${post.images}" th:src="${image.path}" class="card-img-top"/>
-        <!--        <img id="img" th:each="image : ${post.images} th:src="${image.path}" class="card-img-top" alt="">-->
         <div class="card-body">
             <h5 class="card-title" th:text="${post.title}"></h5>
-            <p class="card-text"><small class="text-muted" th:text="${post.description}"></small></p>
-            <a class="card-footer-item" th:href="@{/posts/{postId}(postId = ${post.id})}">View Post</a>
+            <p class="card-text" th:text="${post.description}"></p>
+            <a th:href="@{/posts/{postId}(postId = ${post.id})}" class="btn btn-primary">View Post</a>
         </div>
     </div>
+    </div>
 </div>
-</div>
-
 <th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>
