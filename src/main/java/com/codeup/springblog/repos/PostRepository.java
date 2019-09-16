@@ -15,6 +15,8 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     Iterable<Post> findByOwner(User owner);
 
+    List<Post> findAll();
+
 
 //    @Query("delete from posts p where p.title=:title")
 //    void deletePostsBy(@Param("title") String title);

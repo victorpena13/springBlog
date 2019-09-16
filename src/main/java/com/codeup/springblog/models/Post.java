@@ -1,5 +1,8 @@
 package com.codeup.springblog.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,13 +15,17 @@ public class Post {
     private String title;
     @Column(nullable = false)
     private String description;
-    @OneToOne
+
+//    @OneToOne
+//    private User owner;
+    @ManyToOne
+    @JsonManagedReference
     private User owner;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Image> images;
-    public Post() {
 
-    }
+    public Post() { }
 
     public Post(String title, String description, User owner, List<Image> images) {
         this.title = title;
@@ -66,6 +73,7 @@ public class Post {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+
 }
 
 

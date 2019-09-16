@@ -53,7 +53,7 @@ public class PostController {
     public String show(@PathVariable String term, Model viewModel) {
         List<Post> posts = postDao.searchByTitleLike(term);
         viewModel.addAttribute("posts", posts);
-        return "posts/index";
+        return "/posts/index";
     }
 
 
@@ -106,6 +106,15 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/posts.json")
+    public @ResponseBody List<Post> viewAllPostsInJSONFormat() {
+        return postDao.findAll();
+    }
+
+    @GetMapping("/posts/ajax")
+    public String viewAllPostsWithAjax() {
+        return "posts/ajax";
+    }
 
 
 }

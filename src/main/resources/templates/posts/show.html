@@ -5,15 +5,22 @@
 <body>
 
 <th:block th:replace="fragments/navbar :: top-nav" />
+<!--<h1 th:text="${post.title}"></h1>-->
 
-<h1 th:text="${post.title}"></h1>
-<img id="img" th:each="image : ${post.images}" th:src="${image.path}"/>
+<!--<p th:text="${post.description}"></p>-->
+<!--<p><strong>created by:</strong></p>-->
+<!--<p th:text="${post.owner.email}"></p>-->
 
-<p th:text="${post.description}"></p>
-<p><strong>created by:</strong></p>
-<p th:text="${post.owner.email}"></p>
-
-
+<div class="container">
+<div class="card mb-3">
+    <img id="img" th:each="image : ${post.images}" th:src="${image.path}"/>
+    <div class="card-body">
+        <h5 class="card-title" th:text="${post.title}">Card title</h5>
+        <p class="card-text" th:text="${post.description}"></p>
+        <p class="card-text"><small class="text-muted" th:text="${post.owner.email}"></small></p>
+    </div>
+</div>
+</div>
 
 <!--<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${post.owner.id}" class="field is-grouped">-->
 <!--    <form th:action="@{/posts/delete/__${post.id}__}" th:method="get" th:object="${post}">-->
@@ -24,6 +31,6 @@
 <!--    </form>-->
 <!--</div>-->
 
-
+<th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>

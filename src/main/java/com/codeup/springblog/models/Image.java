@@ -1,5 +1,7 @@
 package com.codeup.springblog.models;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +28,7 @@ public class Image {
     public Image() {
 
     }
+
 
     public long getId() {
         return id;
