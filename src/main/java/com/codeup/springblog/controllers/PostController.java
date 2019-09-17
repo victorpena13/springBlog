@@ -1,16 +1,23 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.Image;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
+import com.codeup.springblog.repos.ImageRepository;
 import com.codeup.springblog.repos.PostRepository;
 import com.codeup.springblog.repos.UserRepository;
 import com.codeup.springblog.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -18,11 +25,13 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final ImageRepository imageDao;
 
-    public PostController(PostRepository postRepository, UserRepository userRepository)
+    public PostController(PostRepository postRepository, UserRepository userRepository, ImageRepository imageRepository)
     {
         postDao = postRepository;
-        userDao=userRepository;
+        userDao = userRepository;
+        imageDao = imageRepository;
 
     }
 
@@ -92,8 +101,17 @@ public class PostController {
         return "posts/create";
     }
 
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
+
+    @Value("/uploads")
+    private String savePath;
+
+
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
+    public String createPost(@RequestParam(name = "file") MultipartFile uploadedFile,
+                             Model model, @ModelAttribute Post post) {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.findOne(userSession.getId());
         post.setOwner(user);
@@ -103,8 +121,22 @@ public class PostController {
                 "post created",
                 "Your post has been created!" + savedPost.getTitle() + savedPost.getOwner()
         );
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+            String imagePath = Paths.get(savePath,filename).toString();
+            Image image = new Image(imagePath, savedPost);
+            Image savedImage = imageDao.save(image);
+            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
         return "redirect:/posts";
     }
+
 
     @GetMapping("/posts.json")
     public @ResponseBody List<Post> viewAllPostsInJSONFormat() {

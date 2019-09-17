@@ -1,5 +1,6 @@
 package com.codeup.springblog.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -17,10 +18,16 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private Post post;
 
     public Image(long id, String path, Post post) {
         this.id = id;
+        this.path = path;
+        this.post = post;
+    }
+
+    public Image(String path, Post post) {
         this.path = path;
         this.post = post;
     }

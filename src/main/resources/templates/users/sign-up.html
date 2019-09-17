@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace ="fragments/header :: main-header('home')"/>
+<head th:replace ="fragments/header :: main-header('Register')"/>
 
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
 
 
     <h1>Create An Account</h1>
+
+<hr/>
+
+<div class="container">
     <form th:action="@{/sign-up}" method="post" th:object="${user}">
-
-
+    <div class="form-group">
         <label for="username">Username</label>
-        <input id="username" th:field="*{username}"/>
-
+        <input class="form-control" id="username" name="username" th:field="*{username}"/>
+    </div>
+    <div class="form-group">
         <label for="email">E-Mail</label>
-        <input id="email" th:field="*{email}"/>
-
+        <input class="form-control" id="email" name="email" th:field="*{email}"/>
+    </div>
+    <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" type="password" th:field="*{password}"/>
+        <input class="form-control" id="password"  name="password" type="password" th:field="*{password}"/>
+    </div>
 
-        <input value="Sign me up!" type="submit"/>
-    </form>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
 
 <th:block th:replace="fragments/footer :: my-footer"/>
 </body>

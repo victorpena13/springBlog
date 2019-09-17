@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace ="fragments/header :: main-header('home')"/>
+<head th:replace ="fragments/header :: main-header('Edit Post')">
+</head>
 
 <body>
 <th:block th:replace="fragments/navbar :: top-nav" />
 
+<h1>Edit Post</h1>
+
+<hr/>
+
+<div class="container">
     <form th:action="@{/posts/edit/__${post.id}__}" th:method="POST">
+        <div class="form-group">
+            <label th:for="title"><strong>Title</strong></label>
+            <input th:id="title" class="form-control" th:text="${title}" th:name="title" th:value="${post.title}"/>
+        </div>
+        <div class="form-group">
+            <label th:for="description"><strong>Password</strong></label>
+            <input th:d="description" class="form-control" th:text="${description}" th:name="description" th:value="${post.description}"/>
+        </div>
+            <button th:type="submit" class="btn btn-primary">Edit</button>
+    </form>
+</div>
 
-    <input th:text="${title}" name="title" th:value="${post.title}"/>
-    <input th:text="${description}" name="description" th:value="${post.description}"/>
-    <button>Edit</button>
-</form>
-
+<th:block th:replace="fragments/footer :: my-footer"/>
 </body>
 </html>

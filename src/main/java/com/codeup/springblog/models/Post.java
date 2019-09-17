@@ -1,6 +1,7 @@
 package com.codeup.springblog.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
@@ -12,8 +13,10 @@ public class Post {
     @Id @GeneratedValue
     private long id;
     @Column(nullable = false, length = 100)
+    @NotBlank(message = "Post must have a title")
     private String title;
     @Column(nullable = false)
+    @NotBlank(message = "Post must have a description")
     private String description;
 
 //    @OneToOne

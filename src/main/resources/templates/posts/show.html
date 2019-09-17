@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head th:replace ="fragments/header :: main-header('post')"/>
+<head th:replace ="fragments/header :: main-header('Post')"/>
 
 <body>
-
 <th:block th:replace="fragments/navbar :: top-nav" />
-<!--<h1 th:text="${post.title}"></h1>-->
+<h1 th:text="${post.title}"></h1>
 
-<!--<p th:text="${post.description}"></p>-->
-<!--<p><strong>created by:</strong></p>-->
-<!--<p th:text="${post.owner.email}"></p>-->
+<hr/>
 
 <div class="container">
 <div class="card mb-3">
@@ -21,15 +18,6 @@
     </div>
 </div>
 </div>
-
-<!--<div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.id} == ${post.owner.id}" class="field is-grouped">-->
-<!--    <form th:action="@{/posts/delete/__${post.id}__}" th:method="get" th:object="${post}">-->
-<!--        <button class="btn btn-danger">Delete</button>-->
-<!--    </form>-->
-<!--    <form th:action="@{/posts/edit/__${post.id}__}" th:method="get" th:object="${post}">-->
-<!--        <button class="btn btn-danger">Edit</button>-->
-<!--    </form>-->
-<!--</div>-->
 
 <th:block th:replace="fragments/footer :: my-footer"/>
 </body>
