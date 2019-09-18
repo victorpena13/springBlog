@@ -10,7 +10,7 @@
 <hr/>
 
 <div class="container">
-    <form th:action="@{/posts/create}" th:method="POST" enctype="multipart/form-data" th:object="${post}">
+    <form th:action="@{/posts/create}"  th:method="POST" enctype="multipart/form-data" th:object="${post}">
         <div class="form-group">
             <label for="title">Title</label>
             <input class="form-control" id="title" name="title"  th:field="*{title}"/>
