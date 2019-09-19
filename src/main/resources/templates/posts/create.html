@@ -20,10 +20,19 @@
             <input class="form-control" id="description" name="description" th:field="*{description}"/>
         </div>
 
-        <label for="file">Upload a file!</label>
-        <input id="file" name="file" type="file" />
-        <br />
-        <input type="submit" value="upload" />
+<!--        <label for="file">Upload a file!</label>-->
+<!--        <input id="file" name="file" type="file" />-->
+<!--        <br />-->
+<!--        <input type="submit" value="upload" />-->
+
+        <div class="field">
+            <div>
+                <button class="btn btn-light" type="button" id="picker">Upload Post Photo</button>
+                <input type="hidden" id="fileupload" name="file" />
+            </div>
+            <div id="nameBox"></div>
+        </div>
+        <button class="btn " type="submit">Post</button>
     </form>
 </div>
 
