@@ -9,7 +9,14 @@
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script>
     const client = filestack.init(fileStackKey);
-    client.picker().open();
+    var options = {
+        maxSize: 10 * 1024 * 1024,
+        accept: 'image/*',
+        uploadInBackground: false
+    };
+    var picker = client.picker().open();
+
+
 </script>
 </th:block>
 </body>
