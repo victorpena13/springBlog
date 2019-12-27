@@ -42,10 +42,6 @@ public class UserController {
         return "redirect:/login";
     }
 
-
-
-
-
     @GetMapping("/profile")
     public String showUserPosts(Model vModel) {
         User userSession = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
